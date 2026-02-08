@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPS Technical Inc. — Transportation Forensics</title>
-    <meta name="description" content="Motorized Recreation Environmental Actionist with over 30 years of experience providing vehicle testing methodology and services for USFS, EPA, NHTSA, and DOT.">
+    <title>DPS Technical Inc. — Vehicle Sound Control, EPA Testing & DOT Compliance</title>
+    <meta name="description" content="Over 30 years providing vehicle sound control, EPA emission testing, DOT compliance inspections, and USFS qualification services. Trusted by law enforcement, manufacturers, importers, and recreational communities nationwide.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -49,9 +49,102 @@
             z-index: 1000;
         }
 
-        /* ── Header / Hero ── */
+        /* ── Sticky Navigation ── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+
+        .nav-logo {
+            height: 32px;
+            width: auto;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            padding: 0.25rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--yellow);
+        }
+
+        .nav-links a.active {
+            border-bottom-color: var(--yellow);
+        }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--light);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ── Hero ── */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -62,7 +155,6 @@
             overflow: hidden;
         }
 
-        /* Diagonal accent stripe */
         .hero::before {
             content: '';
             position: absolute;
@@ -145,7 +237,6 @@
             font-weight: 500;
         }
 
-        /* ── Scroll indicator ── */
         .scroll-hint {
             position: absolute;
             bottom: 2rem;
@@ -170,6 +261,340 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
+        /* ── Services Overview Strip ── */
+        .services-strip {
+            background: var(--dark);
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 1.25rem 1.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .services-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .services-strip-inner {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            min-width: max-content;
+        }
+
+        .services-strip a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid #333;
+            border-radius: 100px;
+            text-decoration: none;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gray);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .services-strip a:hover {
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .services-strip .pill-num {
+            font-size: 0.65rem;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        /* ── Service Sections (shared) ── */
+        .service-section {
+            padding: 5rem 1.5rem;
+        }
+
+        .service-section:nth-child(odd) {
+            background: var(--black);
+        }
+
+        .service-section:nth-child(even) {
+            background: var(--dark);
+        }
+
+        .service-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            color: var(--white);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            max-width: 680px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+
+        .section-desc strong {
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        /* ── Service Card Grid ── */
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .service-card {
+            background: var(--dark-surface);
+            border: 1px solid #252525;
+            border-radius: 2px;
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--yellow);
+        }
+
+        .service-card.featured {
+            grid-column: 1 / -1;
+            border-color: #333;
+            background: linear-gradient(135deg, var(--dark-surface), #1e1e1e);
+        }
+
+        .service-card.coming-soon {
+            opacity: 0.6;
+            border-style: dashed;
+        }
+
+        .card-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .card-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .card-list li {
+            font-size: 0.92rem;
+            color: var(--gray);
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--red);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* ── Audience Tags ── */
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .audience-tag {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.8rem;
+            border: 1px solid #333;
+            border-radius: 2px;
+            color: var(--gray);
+        }
+
+        /* ── Highlight Box ── */
+        .highlight-box {
+            border-left: 3px solid var(--yellow);
+            background: rgba(255, 224, 0, 0.03);
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .highlight-box .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .highlight-box .card-text {
+            font-size: 0.92rem;
+        }
+
+        /* ── Vehicle Types Grid ── */
+        .vehicle-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .vehicle-chip {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            background: var(--dark-surface);
+            border: 1px solid #252525;
+            border-radius: 2px;
+            color: var(--light);
+        }
+
+        /* ── Process Steps ── */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--dark-surface);
+            border: 1px solid #252525;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .step-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--red);
+            opacity: 0.4;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-text {
+            font-size: 0.88rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ── Products Cards ── */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .product-card {
+            background: var(--dark-surface);
+            border: 1px solid #252525;
+            border-radius: 2px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: var(--yellow);
+        }
+
+        .product-card .card-title {
+            margin-bottom: 0.75rem;
+        }
+
+        .product-card .card-text {
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.65rem 1.5rem;
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .cta-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
         /* ── Contact Section ── */
         .contact {
             background: var(--dark);
@@ -182,14 +607,11 @@
             margin: 0 auto;
         }
 
-        .section-label {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 600;
-            font-size: 0.8rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--red);
-            margin-bottom: 2rem;
+        .contact-intro {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
         }
 
         .contact-grid {
@@ -245,7 +667,6 @@
             color: var(--gray);
         }
 
-        /* ── Contact Details ── */
         .contact-details {
             margin-top: 3rem;
             padding-top: 2rem;
@@ -290,6 +711,22 @@
             border-top: 1px solid #1A1A1A;
         }
 
+        .footer-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-badge {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #555;
+        }
+
         /* ── Animations ── */
         @keyframes fadeUp {
             from {
@@ -309,6 +746,57 @@
 
         /* ── Responsive ── */
         @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 1rem 1.5rem 1.5rem;
+                gap: 0;
+                border-bottom: 1px solid #222;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid #1a1a1a;
+                font-size: 0.85rem;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .services-strip-inner {
+                justify-content: flex-start;
+                padding: 0 0.5rem;
+            }
+
+            .service-grid,
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card.featured {
+                grid-column: 1;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -323,35 +811,247 @@
                 max-width: 300px;
             }
 
-            .hero {
-                min-height: 90vh;
+            .vehicle-grid {
+                gap: 0.5rem;
+            }
+
+            .vehicle-chip {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.75rem;
+            }
+
+            .footer-badges {
+                flex-wrap: wrap;
+                gap: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Sticky Navigation -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-inner">
+            <img src="DPS.png" alt="DPS Technical" class="nav-logo">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sound-control">Sound Control</a></li>
+                <li><a href="#emission-testing">Emission Testing</a></li>
+                <li><a href="#fmvss">FMVSS Inspections</a></li>
+                <li><a href="#spark-arrester">Spark Arrester</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="logo">
-            <img src="DPS.png" alt="DPS Technical Inc. — Transportation Forensics" width="1383" height="872">
+            <img src="DPS.png" alt="DPS Technical Inc. — Vehicle Sound & Compliance Experts" width="1383" height="872">
         </div>
         <h1 class="company-name">DPS Technical Inc.</h1>
-        <p class="tagline">Rock and Roll Ain't Noise Pollution</p>
+        <p class="tagline">Vehicle Sound & Compliance Experts</p>
         <div class="divider"></div>
         <p class="description">
-            Motorized Recreation <strong>"Environmental Actionist"</strong> with over 30 years of experience providing vehicle testing methodology and services for <strong>USFS</strong>, <strong>EPA</strong>, <strong>NHTSA</strong>, and <strong>DOT</strong> for international vehicle certification approvals.
+            Over 30 years providing <strong>vehicle sound control</strong>, <strong>EPA emission testing</strong>, <strong>DOT compliance inspections</strong>, and <strong>USFS qualification services</strong>. Trusted by law enforcement, manufacturers, importers, and recreational communities nationwide.
         </p>
         <div class="scroll-hint">
-            Contact
+            Explore
             <span></span>
         </div>
     </section>
 
+    <!-- Services Overview Strip -->
+    <div class="services-strip">
+        <div class="services-strip-inner">
+            <a href="#sound-control"><span class="pill-num">01</span> Sound Control</a>
+            <a href="#emission-testing"><span class="pill-num">02</span> Emission Testing</a>
+            <a href="#fmvss"><span class="pill-num">03</span> FMVSS Inspections</a>
+            <a href="#spark-arrester"><span class="pill-num">04</span> Spark Arrester</a>
+            <a href="#products"><span class="pill-num">05</span> Products</a>
+        </div>
+    </div>
+
+    <!-- Section 1: Vehicle Sound Control -->
+    <section class="service-section" id="sound-control">
+        <div class="service-inner">
+            <p class="section-label">01 — Top Priority</p>
+            <h2 class="section-title">Vehicle Sound Control</h2>
+            <p class="section-desc">
+                Comprehensive sound control solutions for <strong>law enforcement</strong>, <strong>code enforcement</strong>, <strong>race tracks</strong>, and <strong>recreational communities</strong>. From training modules to field-ready testing utilities.
+            </p>
+            <div class="service-grid">
+                <div class="service-card featured">
+                    <div class="card-label">Featured</div>
+                    <div class="card-title">Training Modules</div>
+                    <div class="card-text">
+                        Structured training programs for vehicle sound enforcement and compliance testing.
+                    </div>
+                    <ul class="card-list">
+                        <li>Law Enforcement / Code Enforcement Module</li>
+                        <li>Civilian Module — Race Tracks & Recreational</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="card-label">Monitoring</div>
+                    <div class="card-title">Environmental Noise Control</div>
+                    <div class="card-text">
+                        Noise Camera traffic monitoring expansion for automated sound enforcement in communities and near sensitive areas.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-label">Utilities</div>
+                    <div class="card-title">Sound Testing RPM Utilities</div>
+                    <ul class="card-list">
+                        <li>Full Version — Law Enforcement</li>
+                        <li>Basic Version — Civilian</li>
+                    </ul>
+                </div>
+                <div class="service-card coming-soon">
+                    <div class="card-label">Coming Soon</div>
+                    <div class="card-title">USFS Spark Arrester Field Inspection Utility</div>
+                    <div class="card-text">
+                        A dedicated field inspection utility for spark arrester compliance — currently in development.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Vehicle Sound Emission Testing -->
+    <section class="service-section" id="emission-testing">
+        <div class="service-inner">
+            <p class="section-label">02 — EPA Certification</p>
+            <h2 class="section-title">Vehicle Sound Emission Testing</h2>
+            <p class="section-desc">
+                EPA certification testing for <strong>motorcycles</strong> and <strong>replacement exhaust systems</strong>. Ensuring compliance with federal noise emission standards for manufacturers and importers.
+            </p>
+            <div class="audience-tags">
+                <span class="audience-tag">Motorcycle Manufacturers</span>
+                <span class="audience-tag">Exhaust System Manufacturers</span>
+                <span class="audience-tag">Importers</span>
+            </div>
+            <div class="highlight-box">
+                <div class="card-title">Services</div>
+                <ul class="card-list">
+                    <li>EPA Noise Emission Compliance Testing</li>
+                    <li>Motorcycle Sound Level Certification</li>
+                    <li>Replacement Exhaust System Testing</li>
+                    <li>Pre-certification Consultation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: FMVSS Vehicle Inspections -->
+    <section class="service-section" id="fmvss">
+        <div class="service-inner">
+            <p class="section-label">03 — DOT Compliance</p>
+            <h2 class="section-title">FMVSS Vehicle Inspections</h2>
+            <p class="section-desc">
+                DOT compliance inspections for <strong>new vehicle importers</strong>. Physical inspection and documentation review to verify conformance with Federal Motor Vehicle Safety Standards.
+            </p>
+            <div class="vehicle-grid">
+                <span class="vehicle-chip">Motorcycles</span>
+                <span class="vehicle-chip">Scooters</span>
+                <span class="vehicle-chip">ROHVs</span>
+                <span class="vehicle-chip">Low Speed Neighborhood Vehicles</span>
+                <span class="vehicle-chip">Utility Vehicles</span>
+                <span class="vehicle-chip">Electric Motorcycles</span>
+                <span class="vehicle-chip">Personal Transportation</span>
+            </div>
+            <div class="service-grid">
+                <div class="service-card coming-soon">
+                    <div class="card-label">Coming Soon</div>
+                    <div class="card-title">FMVSS Inspection Utility</div>
+                    <div class="card-text">
+                        Streamlined digital inspection workflow for DOT compliance verification — currently in development.
+                    </div>
+                </div>
+                <div class="service-card coming-soon">
+                    <div class="card-label">Coming Soon</div>
+                    <div class="card-title">Regulatory Compliance Educational Module</div>
+                    <div class="card-text">
+                        Comprehensive training on FMVSS requirements for importers and manufacturers.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Spark Arrester Qualification -->
+    <section class="service-section" id="spark-arrester">
+        <div class="service-inner">
+            <p class="section-label">04 — USFS Qualification</p>
+            <h2 class="section-title">Spark Arrester Qualification</h2>
+            <p class="section-desc">
+                USFS-standard spark arrester qualification testing using <strong>calibrated Flow Bench equipment</strong>. A rigorous three-step process ensuring arrester compliance for recreational and off-highway vehicles.
+            </p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <div class="step-title">Component Inspection</div>
+                    <div class="step-text">Physical evaluation of arrester construction and materials</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <div class="step-title">Application Preparation</div>
+                    <div class="step-text">Documentation and test configuration for qualification submission</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <div class="step-title">Physical Testing</div>
+                    <div class="step-text">Flow Bench performance testing against USFS standards</div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <div class="card-title">Calibrated Flow Bench Equipment</div>
+                <div class="card-text">
+                    All physical testing is performed using professionally calibrated Flow Bench equipment, ensuring accurate and repeatable results that meet USFS qualification requirements.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Products & Calibrations -->
+    <section class="service-section" id="products">
+        <div class="service-inner">
+            <p class="section-label">05 — Equipment</p>
+            <h2 class="section-title">Products & Calibrations</h2>
+            <p class="section-desc">
+                Professional sound level measuring instruments and calibration services to keep your equipment accurate and field-ready.
+            </p>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="card-label">Instruments</div>
+                    <div class="card-title">Sound Level Measuring Instrument Kits</div>
+                    <div class="card-text">
+                        Complete measurement kits for vehicle sound level testing — configured for law enforcement, code enforcement, and track-side use.
+                    </div>
+                    <a href="#contact" class="cta-btn">Inquire</a>
+                </div>
+                <div class="product-card">
+                    <div class="card-label">Service</div>
+                    <div class="card-title">Accuracy Calibrations</div>
+                    <div class="card-text">
+                        Scheduled calibration services for sound level meters and related instrumentation. Maintain measurement accuracy and compliance.
+                    </div>
+                    <a href="#contact" class="cta-btn">Schedule</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="contact-inner">
-            <p class="section-label">Locations</p>
+            <p class="section-label">Get in Touch</p>
+            <p class="contact-intro">Ready to discuss your testing, compliance, or training needs?</p>
             <div class="contact-grid">
                 <div class="location-card">
                     <div class="location-label">West Coast</div>
@@ -378,8 +1078,69 @@
     </section>
 
     <footer>
-        &copy; 2025 DPS Technical Inc. All rights reserved.
+        <div class="footer-badges">
+            <span class="footer-badge">USFS</span>
+            <span class="footer-badge">EPA</span>
+            <span class="footer-badge">NHTSA</span>
+            <span class="footer-badge">DOT</span>
+        </div>
+        &copy; 2026 DPS Technical Inc. All rights reserved.
     </footer>
+
+    <script>
+        (function() {
+            var nav = document.getElementById('mainNav');
+            var toggle = document.getElementById('navToggle');
+            var links = document.getElementById('navLinks');
+            var hero = document.getElementById('hero');
+
+            // Show/hide nav based on hero visibility
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        nav.classList.remove('visible');
+                    } else {
+                        nav.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(hero);
+
+            // Mobile toggle
+            toggle.addEventListener('click', function() {
+                toggle.classList.toggle('open');
+                links.classList.toggle('open');
+            });
+
+            // Close mobile menu on link click
+            var navAnchors = links.querySelectorAll('a');
+            navAnchors.forEach(function(a) {
+                a.addEventListener('click', function() {
+                    toggle.classList.remove('open');
+                    links.classList.remove('open');
+                });
+            });
+
+            // Scroll spy for active link
+            var sections = document.querySelectorAll('.service-section, .contact');
+            window.addEventListener('scroll', function() {
+                var scrollPos = window.scrollY + 100;
+                sections.forEach(function(section) {
+                    var top = section.offsetTop;
+                    var bottom = top + section.offsetHeight;
+                    var id = section.getAttribute('id');
+                    var link = links.querySelector('a[href="#' + id + '"]');
+                    if (link) {
+                        if (scrollPos >= top && scrollPos < bottom) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        })();
+    </script>
 
 </body>
 </html>
