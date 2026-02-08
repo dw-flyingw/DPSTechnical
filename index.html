@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPS Technical Inc. — Transportation Forensics</title>
+    <meta name="description" content="Motorized Recreation Environmental Actionist with over 30 years of experience providing vehicle testing methodology and services for USFS, EPA, NHTSA, and DOT.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --yellow: #FFE000;
+            --red: #E02020;
+            --black: #0A0A0A;
+            --dark: #111111;
+            --dark-surface: #1A1A1A;
+            --gray: #888888;
+            --light: #E8E8E8;
+            --white: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--black);
+            color: var(--light);
+            line-height: 1.6;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Noise texture overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* ── Header / Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Diagonal accent stripe */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 2px;
+            height: 200%;
+            background: var(--red);
+            transform: rotate(25deg);
+            opacity: 0.3;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -8%;
+            width: 1px;
+            height: 200%;
+            background: var(--yellow);
+            transform: rotate(25deg);
+            opacity: 0.15;
+        }
+
+        .logo {
+            max-width: 420px;
+            width: 90%;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 1s ease-out both;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 4px 24px rgba(255, 224, 0, 0.15));
+        }
+
+        .company-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            animation: fadeUp 1s ease-out 0.15s both;
+        }
+
+        .tagline {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-style: italic;
+            font-size: clamp(1rem, 2.2vw, 1.35rem);
+            color: var(--yellow);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 1s ease-out 0.3s both;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--red);
+            margin-bottom: 2.5rem;
+            animation: fadeUp 1s ease-out 0.4s both;
+        }
+
+        .description {
+            max-width: 640px;
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+            line-height: 1.8;
+            color: var(--gray);
+            animation: fadeUp 1s ease-out 0.5s both;
+        }
+
+        .description strong {
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        /* ── Scroll indicator ── */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeUp 1s ease-out 0.8s both;
+        }
+
+        .scroll-hint span {
+            display: block;
+            width: 1px;
+            height: 28px;
+            background: linear-gradient(to bottom, var(--gray), transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ── Contact Section ── */
+        .contact {
+            background: var(--dark);
+            border-top: 1px solid #222;
+            padding: 5rem 1.5rem;
+        }
+
+        .contact-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .location-card {
+            padding: 2rem;
+            background: var(--dark-surface);
+            border: 1px solid #252525;
+            border-radius: 2px;
+            transition: border-color 0.3s ease;
+        }
+
+        .location-card:hover {
+            border-color: var(--yellow);
+        }
+
+        .location-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .location-label::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--yellow);
+            border-radius: 50%;
+        }
+
+        .location-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .location-region {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        /* ── Contact Details ── */
+        .contact-details {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 4rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .contact-item-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .contact-item a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.05rem;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--yellow);
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #444;
+            letter-spacing: 0.05em;
+            border-top: 1px solid #1A1A1A;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .logo {
+                max-width: 300px;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="logo">
+            <img src="dpstechnical_logo.png" alt="DPS Technical Inc. — Transportation Forensics" width="1383" height="872">
+        </div>
+        <h1 class="company-name">DPS Technical Inc.</h1>
+        <p class="tagline">Rock and Roll Ain't Noise Pollution</p>
+        <div class="divider"></div>
+        <p class="description">
+            Motorized Recreation <strong>"Environmental Actionist"</strong> with over 30 years of experience providing vehicle testing methodology and services for <strong>USFS</strong>, <strong>EPA</strong>, <strong>NHTSA</strong>, and <strong>DOT</strong> for international vehicle certification approvals.
+        </p>
+        <div class="scroll-hint">
+            Contact
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact">
+        <div class="contact-inner">
+            <p class="section-label">Locations</p>
+            <div class="contact-grid">
+                <div class="location-card">
+                    <div class="location-label">West Coast</div>
+                    <p class="location-name">Kern County</p>
+                    <p class="location-region">California</p>
+                </div>
+                <div class="location-card">
+                    <div class="location-label">East Coast</div>
+                    <p class="location-name">Onslow County</p>
+                    <p class="location-region">North Carolina</p>
+                </div>
+            </div>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <span class="contact-item-label">Phone</span>
+                    <a href="tel:+19099080685">+1 (909) 908-0685</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-label">Email</span>
+                    <a href="mailto:chris.real@dpstechnical.com">chris.real@dpstechnical.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 DPS Technical Inc. All rights reserved.
+    </footer>
+
+</body>
+</html>
